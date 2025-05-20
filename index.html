@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concours bf</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and main structure */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Changement d'arrière-plan */
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #2e8b57; /* Vert plus foncé pour l'en-tête */
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header .logo h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        header nav ul li a:hover {
+            color: #ff6347; /* Hover effet en rouge orangé */
+        }
+
+        /* Main content */
+        main {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Section cards */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Card hover effect */
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Button styles */
+        .card a {
+            margin-top: auto; /* Ensure the button is at the bottom of the card */
+            padding: 10px 20px;
+            background-color: #ff8c00; /* Couleur orange pour le bouton */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: #ff7f32; /* Hover effet sur le bouton en orange foncé */
+        }
+
+        /* Colors for different sections */
+        .paramilitaire {
+            background-color: #4682b4; /* Bleu acier */
+            color: #fff;
+        }
+
+        .direct {
+            background-color: #32cd32; /* Vert lime */
+            color: #fff;
+        }
+
+        .professionnel {
+            background-color: #ff6347; /* Tomate */
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e8b57; /* Vert foncé pour le footer */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Concours bf</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#paramilitaire">Concours Paramilitaire</a></li>
+                <li><a href="#direct">Concours Direct</a></li>
+                <li><a href="#professionnel">Concours Professionnel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Section Concours Paramilitaire -->
+        <div id="paramilitaire" class="card paramilitaire">
+            <h3>Concours Paramilitaire</h3>
+            <p>Formations pour les concours dans les forces de sécurité et défense.</p>
+            <a href="#">Commencer la formation</a>
+        </div>
+
+        <!-- Section Concours Direct -->
+        <div id="direct" class="card direct">
+            <h3>Concours Direct</h3>
+            <p>Préparation aux concours administratifs et publics.</p>
+            <a href="#">Commencer la formation</a>
+        </div>
+
+        <!-- Section Concours Professionnel -->
+        <div id="professionnel" class="card professionnel">
+            <h3>Concours Professionnel</h3>
+            <p>Formations pour des concours dans des secteurs professionnels.</p>
+            <a href="#">Commencer la formation</a>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Concours bf - Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
