@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Concours Paramilitaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 40px;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            max-width: 800px;
+        }
+
+        .content h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        .question p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 12px 24px;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination #prevButton {
+            background-color: #6c757d;
+        }
+
+        .pagination #prevButton:hover {
+            background-color: #5a6368;
+        }
+
+        .pagination #nextButton {
+            background-color: #dc3545;
+        }
+
+        .pagination #nextButton:hover {
+            background-color: #c82333;
+        }
+
+        .submit-button {
+            padding: 12px 24px;
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background-color: #5a8fd0;
+        }
+
+        .correct {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #4682b4;
+        }
+
+        .pagination button {
+            display: inline-block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            width: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Testez vos connaissances sur le Concours Paramilitaire</h2>
+        <p>Répondez aux questions ci-dessous et soumettez vos réponses. Vous ne pourrez plus modifier vos réponses après avoir soumis.</p>
+
+        <form id="quizForm">
+            <div id="questionsContainer">
+                <!-- Les questions seront ajoutées ici dynamiquement -->
+            </div>
+
+            <div class="pagination">
+                <button type="button" id="prevButton" class="disabled" onclick="navigate('prev')">Précédent</button>
+                <button type="button" id="nextButton" onclick="navigate('next')">Suivant</button>
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="submit-button" onclick="submitQuiz()">Soumettre</button>
+            </div>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const questionsData = [
+            { question: "Quel est le rôle principal de la Police Nationale ?", options: ["Maintenir l'ordre public", "Assurer la sécurité des prisons", "Gérer les ressources naturelles"], correct: 0 },
+            { question: "Quels sont les objectifs de la Gendarmerie ?", options: ["Maintenir la paix sociale", "Organiser les concours militaires", "Assurer la sécurité des citoyens"], correct: 2 },
+            { question: "Quel est le rôle principal de la Douane ?", options: ["Contrôler les frontières", "Assurer la sécurité publique", "Gérer les ressources naturelles"], correct: 0 },
+            { question: "Quelles sont les principales missions des Eaux et Forêts ?", options: ["Préserver la faune et la flore", "Protéger les frontières", "Assurer la sécurité intérieure"], correct: 0 },
+            { question: "Quel est le rôle principal de la Sécurité Pénitentiaire ?", options: ["Sécuriser les établissements pénitentiaires", "Assurer la sécurité routière", "Contrôler les frontières"], correct: 0 },
+            // Ajoutez plus de questions ici...
+        ];
+
+        let currentPage = 0;
+        const questionsPerPage = 1; // Afficher 1 question par page
+        const totalQuestions = questionsData.length;
+
+        let userAnswers = {};
+
+        function showQuestions() {
+            const startIndex = currentPage * questionsPerPage;
+            const endIndex = Math.min(startIndex + questionsPerPage, totalQuestions);
+
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous questions
+
+            for (let i = startIndex; i < endIndex; i++) {
+                const questionData = questionsData[i];
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+
+                let questionHTML = `<p>${i + 1}. ${questionData.question}</p>`;
+                questionData.options.forEach((option, index) => {
+                    questionHTML += `<label><input type="radio" name="q${i}" value="${index}" ${userAnswers[`q${i}`] == index ? 'checked' : ''}> ${option}</label><br>`;
+                });
+
+                questionDiv.innerHTML = questionHTML;
+                container.appendChild(questionDiv);
+            }
+
+            // Update button states
+            document.getElementById("prevButton").disabled = currentPage === 0;
+            document.getElementById("nextButton").disabled = currentPage === Math.floor(totalQuestions / questionsPerPage);
+        }
+
+        function navigate(direction) {
+            if (direction === "next" && currentPage < Math.floor((totalQuestions - 1) / questionsPerPage)) {
+                currentPage++;
+            } else if (direction === "prev" && currentPage > 0) {
+                currentPage--;
+            }
+            showQuestions();
+        }
+
+        function submitQuiz() {
+            const answers = {
+                q0: 0, // Ex: Bonne réponse pour la question 1
+                q1: 2, // Ex: Bonne réponse pour la question 2
+                q2: 0, // Ex: Bonne réponse pour la question 3
+                q3: 0, // Ex: Bonne réponse pour la question 4
+                q4: 0, // Ex: Bonne réponse pour la question 5
+                // Ajouter les bonnes réponses pour les autres questions ici...
+            };
+
+            let score = 0;
+
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(function(question, index) {
+                const selectedOption = question.querySelector('input[type="radio"]:checked');
+                const questionName = `q${index}`;
+
+                const options = question.querySelectorAll('input[type="radio"]');
+                options.forEach(function(option) {
+                    const parentLabel = option.parentElement;
+                    if (option.value == answers[questionName]) {
+                        parentLabel.classList.add('correct'); // Bonne réponse
+                    } else {
+                        parentLabel.classList.add('incorrect'); // Mauvaise réponse
+                    }
+                });
+
+                const radios = question.querySelectorAll('input[type="radio"]');
+                radios.forEach(function(radio) {
+                    radio.disabled = true;
+                });
+            });
+
+            const finalScore = (score / totalQuestions) * 100;
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `Vous avez obtenu ${finalScore}% de bonnes réponses.`;
+
+            document.querySelector('.submit-button').disabled = true;
+            document.getElementById("nextButton").disabled = true;
+        }
+
+        // Initialisation
+        showQuestions();
+    </script>
+</body>
+</html>
