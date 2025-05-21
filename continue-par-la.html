@@ -4,117 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Continuez votre formation - Concours Paramilitaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Style de base */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f7fc;
             color: #333;
-            padding: 40px;
+            margin: 0;
+            padding: 0;
         }
 
         header {
-            background-color: #4682b4; /* Bleu acier pour l'en-tête */
-            color: #fff;
-            padding: 20px;
+            background-color: #4682b4;
+            color: white;
+            padding: 20px 0;
             text-align: center;
-            margin-bottom: 40px;
+            font-size: 1.8em;
         }
 
-        header h1 {
-            font-size: 2.5em;
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            color: #4682b4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #4682b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            width: 200px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #5a8fd0;
         }
 
         .content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            margin: auto;
-            max-width: 800px;
-        }
-
-        .content h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            color: #4682b4;
-        }
-
-        .content p {
             font-size: 1.2em;
-            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        .content button {
-            padding: 12px 24px;
+        footer {
+            text-align: center;
+            padding: 20px;
             background-color: #4682b4;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .content button:hover {
-            background-color: #5a8fd0;
-        }
-
-        /* Button to go back */
-        .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4682b4;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .back-button:hover {
-            background-color: #5a8fd0;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+
     <header>
-        <h1>Continuez votre formation pour le Concours Paramilitaire</h1>
+        Formation Concours Paramilitaire
     </header>
 
-    <!-- Main content for the formation -->
-    <div class="content">
-        <h2>Testez vos connaissances</h2>
-        <p>Nous allons maintenant passer à un exercice pratique pour évaluer votre compréhension des informations liées aux domaines paramilitaires.</p>
+    <div class="container">
+        <div class="navigation-buttons">
+            <a href="dissertation.html" class="nav-button">Dissertation</a>
+            <a href="quizz.html" class="nav-button">Quizz</a>
+        </div>
 
-        <!-- Example of a question -->
-        <h3>Question 1 : Quel est le rôle principal de la Police Nationale ?</h3>
-        <ul>
-            <li><input type="radio" name="question1" value="1"> Maintenir l'ordre public</li>
-            <li><input type="radio" name="question1" value="2"> Assurer la sécurité des prisons</li>
-            <li><input type="radio" name="question1" value="3"> Gérer les ressources naturelles</li>
-        </ul>
-
-        <h3>Question 2 : Quels sont les principaux objectifs de la Gendarmerie ?</h3>
-        <ul>
-            <li><input type="radio" name="question2" value="1"> Gérer les tests physiques</li>
-            <li><input type="radio" name="question2" value="2"> Assurer la sécurité publique et maintenir l'ordre</li>
-            <li><input type="radio" name="question2" value="3"> Vérifier les examens des douanes</li>
-        </ul>
-
-        <!-- Submit button -->
-        <button onclick="submitQuiz()">Soumettre les réponses</button>
-
-        <!-- Back button -->
-        <a href="para.html" class="back-button">Retour à la formation</a>
+        <div class="content">
+            <div class="section-title">Bienvenue dans votre formation</div>
+            <p>Cette plateforme vous offre une préparation complète aux concours paramilitaires. Choisissez une section ci-dessus pour commencer :</p>
+            <ul>
+                <li><strong>Dissertation</strong> : Rédigez des dissertations sur des sujets liés aux forces de sécurité et de défense.</li>
+                <li><strong>Quizz</strong> : Testez vos connaissances avec des questions à choix multiples.</li>
+            </ul>
+        </div>
     </div>
 
-    <script>
-        // Function to simulate submitting the quiz
-        function submitQuiz() {
-            alert("Merci d'avoir répondu aux questions ! Votre progression sera enregistrée.");
-        }
-    </script>
+    <footer>
+        &copy; 2025 Concours Paramilitaire - Tous droits réservés
+    </footer>
+
 </body>
 </html>
-
